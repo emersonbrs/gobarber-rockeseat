@@ -16,9 +16,9 @@ class AppointmentController {
     const appointments = await Appointment.findAll({
       where: { user_id: req.userId, canceled_at: null },
       order: ['date'],
+      attributes: ['id', 'date', 'past', 'cancelable'],
       limit: 20, // Limite de registros por vez
       offset: (page - 1) * 20, // Quantos registros eu quero pular
-      attributes: ['id', 'date'],
       include: [
         {
           model: User,
